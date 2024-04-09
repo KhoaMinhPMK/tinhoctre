@@ -1,0 +1,14 @@
+/* Đặt margin và padding của body về 0 */
+body {
+    margin: 0;
+    padding: 0;
+}
+
+/* Định dạng cho phần header */
+header {
+    background-color: #333; /* Màu nền */
+    color: #fff; /* Màu chữ */
+    padding: 20px; /* Khoảng cách lề */
+    text-align: center; /* Căn giữa nội dung */
+    margin: 0; /* Đặt margin về 0 */
+}
