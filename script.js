@@ -62,7 +62,7 @@ document.getElementById("signin-button").addEventListener("click", function(e){
             if (userData.password === password) {
                 alert("Login Successful");
                 // Chuyển hướng sang trang index.html trong thư mục chat
-                window.location.href = "./chat/index.html";
+                window.location.href = "./main.html";
             } else {
                 alert("Invalid password");
             }
