@@ -1,2 +1,1 @@
-tính số năm cần để đạt được {variable} là {target_value}{unit}.
-    """
+random.randint(40, 80),
