@@ -24,7 +24,7 @@ function fetchData() {
         // Create a new <a> element
         var linkElement = document.createElement("a");
         linkElement.textContent = container.textContent;
-        linkElement.href = "index.html"; // Set the login page URL
+        linkElement.href = "login.html"; // Set the login page URL
         linkElement.classList.add("btn", "btn-primary", "btn-sm", "ms-md-1", "mt-lg-0", "order-md-1", "ms-auto");
         
         // Replace the container with the link
@@ -65,7 +65,7 @@ function logout() {
             window.location.href = "index.html"; // Redirect to login page
         } else {
             alert("Đăng xuất thành công"); // Display error message
-            window.location.href = "./main.html";
+            window.location.href = "./index.html";
         }
     })
     .catch(error => {

@@ -82,8 +82,8 @@ document.getElementById("signin-button").addEventListener("click", function(e){
                 })
                 .then(data => {
                     alert("Login Successful");
-                    // Chuyển hướng sang trang main.html
-                    window.location.href = "./main.html";
+                    // Chuyển hướng sang trang index.html
+                    window.location.href = "./index.html";
                 })
                 .catch(error => {
                     console.error('There has been a problem with your fetch operation:', error);
