@@ -1,6 +1,7 @@
 const container = document.getElementById('container');
 const registerBtn = document.getElementById('register');
 const loginBtn = document.getElementById('login');
+var stdNo = 0;
 
 registerBtn.addEventListener('click', () => {
     container.classList.add("active");
@@ -36,7 +37,7 @@ document.getElementById("signup-button").addEventListener("click", function(e){
     const name = document.getElementById("signup-name").value; // Sử dụng tên người dùng làm đường dẫn
     const email = document.getElementById("signup-email").value;
     const password = document.getElementById("signup-password").value;
-    // Lưu dữ liệu vào Firebase
+    // Lưu dữ liệu vào Firebase 
     set(ref(db, 'user/' + name), { // Sử dụng tên người dùng làm đường dẫn
         name: name,
         email: email,
@@ -60,9 +61,33 @@ document.getElementById("signin-button").addEventListener("click", function(e){
         if (snapshot.exists()) {
             const userData = snapshot.val();
             if (userData.password === password) {
-                alert("Login Successful");
-                // Chuyển hướng sang trang index.html trong thư mục chat
-                window.location.href = "./main.html";
+                const SIdata = {
+                    user: userData.name,
+                    userpass: userData.password,
+                }
+
+                fetch('http://localhost:3000/IsSignIn', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    credentials: 'include',
+                    body: JSON.stringify(SIdata)
+                })  
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    alert("Login Successful");
+                    // Chuyển hướng sang trang main.html
+                    window.location.href = "./main.html";
+                })
+                .catch(error => {
+                    console.error('There has been a problem with your fetch operation:', error);
+                });
             } else {
                 alert("Invalid password");
             }
@@ -74,4 +99,23 @@ document.getElementById("signin-button").addEventListener("click", function(e){
     }).catch((error) => {
         console.error("Error getting document:", error);
     });
+
+
+
 });
+
+/*
+fetch("https://jsonplaceholder.typicode.com/todos", {
+  method: "POST",
+  body: JSON.stringify({
+    userId: 1,
+    title: "Fix my bugs",
+    completed: false
+  }),
+  headers: {
+    "Content-type": "application/json; charset=UTF-8"
+  }
+})
+  .then((response) => response.json())
+  .then((json) => console.log(json));
+*/
